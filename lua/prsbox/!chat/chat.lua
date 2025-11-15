@@ -1,11 +1,11 @@
 local CvarFadeTime = CreateConVar("prsbox_chat_fadetime", "5", FCVAR_ARCHIVE)
 local CvarPanelSize = CreateConVar("prsbox_chat_size", "0.8", FCVAR_ARCHIVE)
-local CvarMessageLimit = CreateConVar("prsbox_chat_limit", "50", FCVAR_ARCHIVE)
+local CvarMessageLimit = CreateConVar("prsbox_chat_limit", "200", FCVAR_ARCHIVE)
 
 local cvar = CvarPanelSize:GetFloat()
 
 --[[
-	Шрифти
+	Fonts
 --]]
 surface.CreateFont("PRSBOX.Font.SayText", {
 	["font"] = "Roboto",
@@ -22,7 +22,7 @@ surface.CreateFont("PRSBOX.Font.TextEntry", {
 })
 
 --[[
-	Константи
+	Constants
 --]]
 local color_white = Color( 255, 255, 255 )
 local color_yellow = Color( 255, 255, 0 )
@@ -35,14 +35,14 @@ local chat_gray = Color(126, 126, 126)
 local ChatEnabled = false
 
 local user_groups = {
-    ["superadmin"] = Color(142, 255, 114), -- Команда
-    ["admin"] = Color(245, 193, 81), -- Головний модератор
-    ["operator"] = Color(255, 81, 81), -- Модератор
-    ["user"] = Color(0, 140, 255) -- Гравець
+    ["superadmin"] = Color(255, 81, 81),
+    ["admin"] = Color(255, 81, 81),
+    ["operator"] = Color(255, 81, 81),
+    ["user"] = Color(0, 140, 255)
 }
 
 --[[
-    Локальні функції
+    Local Functions
 --]]
 
 local function getEmoji(text, character)
@@ -81,7 +81,7 @@ concommand.Add("chat_test", function ()
 end)
 
 --[[
-	Повідомлення
+	Messages
 --]]
 
 do
@@ -139,8 +139,6 @@ do
 
             newLines = newLines + math.ceil(_textSize / (parentWide - round))
         end
-
-        print(newLines)
 
         local textSize = surface.GetTextSize(self.Text)
         local tall = (newLines * (mt - offset / 1.5)) + offset * 2
@@ -212,7 +210,7 @@ do
 end
 
 --[[
-	Панель повідомлень
+	Message panel
 --]]
 
 do
@@ -329,7 +327,7 @@ do
 end
 
 --[[
-	Основна панель
+	Main panel 
 --]]
 
 do
@@ -402,7 +400,7 @@ do
 				self.TextEntry = entry
 				entry:Dock( FILL )
 
-				entry:SetPlaceholderText( "Повідомлення..." )
+				entry:SetPlaceholderText( "Text..." )
 				entry:SetFont( "PRSBOX.Font.TextEntry" )
 				entry:SetCursorColor( color_yellow )
 				entry:SetTextColor( color_white )
@@ -696,11 +694,4 @@ concommand.Add("prsbox_chat_clear", function()
 		pnl:AlphaTo(0, 0.1, 0, killfunc)
 	end
 	PRSBOX_CHAT.History.Messages = {}
-end)
-
-concommand.Add("chat_test_message", function ()
-	chat.AddText(Color(255, 255, 255), "Test Messageashdjhasjkdhjakshdjlkhasj hhas hdjahs lhdashj dhajksh jdlasdh jashdjk hlajskhd lajshld jka\nTest Message\nTest Message\nTest Message\nTest Message")	
-end)
-concommand.Add("chat_test_message2", function ()
-	chat.AddText(Color(255, 255, 255), "d jahlsdh ajkshdjklha sjhdja shjhdas jkhdjkahsl jkdash djkhasjhd jash;jdh jashjdhla shjdhjkas;dj ashjkdhjka shjkdhsaj khjkdlhaj skhdjkhas jkhdjkalshjd hajkshdj khasljkdh jkashdjkh ajkshdjkahs djklahsjkh djakshd ajlkshfjqhjwhquehuwq ndquwh duqwiodj qoijwdqpwjd oipqjwdi")	
 end)
