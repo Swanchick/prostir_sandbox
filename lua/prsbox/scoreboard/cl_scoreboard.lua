@@ -35,9 +35,6 @@ local ScreenScale = ScreenScale
 local drawRoundedBoxEx = draw.RoundedBoxEx
 local drawDrawText = draw.DrawText
 
--- unused
--- local scrW = ScrW()
--- local scrH = ScrH()
 
 local color_background = Color(0, 0, 0, 100)
 
@@ -52,7 +49,6 @@ local color_player_hovered_death = Color(90, 0, 0, 230)
 
 local color_white = Color(255, 255, 255)
 local color_black = Color(0, 0, 0)
--- local color_orange = Color(234, 137, 0) -- unused
 
 local padding = ScreenScale(2)
 local scroll_margin = ScreenScale(8)
@@ -68,25 +64,20 @@ local ping_pos = ScreenScale(320)
 
 
 local user_groups = {
-    ["superadmin"] = Color(142, 255, 114), -- Команда
-    ["admin"] = Color(255, 81, 81), -- Модератор
-    --["admin"] = Color(245, 193, 81), -- Головний модератор
-    ["operator"] = Color(255, 81, 81), -- Модератор(неактуальний)
-    ["ACE"] = Color(0, 200, 255), -- Гравець + ACE
-    ["user"] = Color(0, 140, 255) -- Гравець
+    ["superadmin"] = Color(255, 81, 81),
+    ["admin"] = Color(255, 81, 81),
+    ["user"] = Color(0, 140, 255)
 }
 
 local DefaultGroupColor = Color(0,140,255)
 
 local user_names = {
-    ["superadmin"] = "Команда",
-    ["admin"] = "Модератор",
-    ["operator"] = "Модератор",
-    ["ACE"] = "Звичайний гравець + ACE",
-    ["user"] = "Звичайний гравець"
+    ["superadmin"] = "superadmin",
+    ["admin"] = "admin",
+    ["user"] = "player"
 }
 
-local DefaultGroupName = "Звичайний гравець"
+local DefaultGroupName = "player"
 
 -- Scoreboard player button
 
@@ -212,15 +203,6 @@ do
         self.frags = self.ply:Frags()
         self.deaths = self.ply:Deaths()
         self.ping = self.ply:Ping()
-
-        -- if ( PRSOXDRAWSTATUS[self.ply] and PRSOXDRAWSTATUS[self.ply][PRSBOX_STS_BUILDENUM] ) then
-        --     if self:IsHovered() then
-        --         self.color = color_player_hovered_build
-        --         return
-        --     end
-        --     self.color = color_player_build
-        --     return
-        -- end
 
         local Dead = not self.ply:Alive()
 

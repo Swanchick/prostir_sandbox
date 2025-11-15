@@ -1,3 +1,0 @@
-local function getAllVoteMaps()
-
-end
