@@ -240,9 +240,9 @@ end)
 
 local plycol = Color(255,255,25)
 local idtbl = {
-    [1] = { s = " покинув гру.",         c = Color(202,58,58) },
-    [2] = { s = " приєднується до гри.", c = Color(245,205,73) },
-    [3] = { s = " приєднався до гри.",   c = Color(88,231,112) }
+    [1] = { s = " left the game.",         c = Color(202,58,58) },
+    [2] = { s = " is joining the game.", c = Color(245,205,73) },
+    [3] = { s = " has joined the game!",   c = Color(88,231,112) }
 }
 
 hook.Add( "ChatText", "PRSBOX.PlayerMessages.Hide", function( index, name, text, type )
